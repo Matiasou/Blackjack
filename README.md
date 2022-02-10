@@ -1,2 +1,2 @@
 # Blackjack
-Blackjack Game 
+Implemented a program that plays the game of blackjack. The program has 4 classes: ArrayBag which is a blueprint for objects that represents a bag of other objects. Player which creates the player and allows him to interact with the program in order to acquire and change their hand. Dealer which takes the role of the dealer of the game. Lastly, Blackjack which is the main class that plays the game.
