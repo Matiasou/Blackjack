@@ -1,6 +1,6 @@
-## Blackjack
+# Blackjack
 
-# Implemented a program that plays the game of Blackjack. The program consists of the following classes:
+## Implemented a program that plays the game of Blackjack. The program consists of the following classes:
 
 ArrayBag: A blueprint for objects that represent a bag of other objects. This class is used to manage collections of items, such as decks of cards.
 Card: Represents a single playing card, with a suit and a rank. This class is essential for creating the deck of cards used in the game and provides methods to get the card's suit, rank, and value according to Blackjack rules.
