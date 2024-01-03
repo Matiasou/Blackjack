@@ -53,7 +53,7 @@ public class Blackjack {
         if (args.length > 0) {
             seed = Integer.parseInt(args[0]);
         }
-        Deck deck = new Deck(seed);
+        Deck deck = new Deck(); // Modify the constructor call to remove the seed parameter
         deck.shuffle();
         return deck;
     }   

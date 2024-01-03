@@ -42,22 +42,31 @@ public Card getCard(int index){
     return hand[index];
 }
 
-public int getHandValue(){
+public int getHandValue() {
     int handValue = 0;
-    for (int i =0; i<hand.length; i++)
-        if(this.hand[i] != null){
-        if (this.hand[i].isAce()){
-            if (handValue > 10){
-                handValue+=1;
+    int aceCount = 0;
+
+    // First, add up the values of all cards, treating Aces as 11
+    for (Card card : this.hand) {
+        if (card != null) {
+            if (card.isAce()) {
+                aceCount++;
+                handValue += 11;
+            } else {
+                handValue += card.getValue();
             }
-            else{
-                handValue+=11; 
-            }
-     }
-        handValue += this.hand[i].getValue();
+        }
     }
+
+    // Then, if the total value exceeds 21 and there are Aces in the hand,
+    // subtract 10 for each Ace to bring the total value under 21 if possible
+    while (handValue > 21 && aceCount > 0) {
+        handValue -= 10;
+        aceCount--;
+    }
+
     return handValue;
-} 
+}
 
 
 public void printHand(){ 
@@ -66,8 +75,10 @@ public void printHand(){
             System.out.print(this.hand[i].toString() + "  ");
         }
     }
-System.out.print("(value = " + this.getHandValue() + ")");
+    // Print the total value of the hand
+    System.out.print("(value = " + this.getHandValue() + ")");
 }
+
 
 public boolean hasBlackjack() {
     return (this.numCards == 2 && this.getHandValue() == 21); 

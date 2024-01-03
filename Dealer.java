@@ -8,23 +8,38 @@ public class Dealer extends Player{
         this.firstCard = false; 
     }
 
-    public void revealFirstCard(){
-        this.firstCard = true;
+    // Constructor and other methods...
 
+    private boolean firstCardHidden = true;
+
+    // Constructor and other methods...
+
+    public void revealFirstCard() {
+        this.firstCardHidden = false;
     }
 
-    public void printHand(){
-        if (!firstCard){
+    @Override
+    public void printHand() {
+        int handValue = 0;
+
+        if (firstCardHidden) {
             System.out.print("XX  ");
-            for(int i = 1; i< super.getNumCards(); i++){
+            // Start from the second card
+            for (int i = 1; i < super.getNumCards(); i++) {
                 System.out.print(super.getCard(i) + "  ");
+                handValue += super.getCard(i).getValue();
             }
-            // System.out.print("\n");
-        }else{
-            super.printHand();
+        } else {
+            // If first card is not hidden, print all cards and calculate total value
+            for (int i = 0; i < super.getNumCards(); i++) {
+                System.out.print(super.getCard(i) + "  ");
+                handValue += super.getCard(i).getValue();
+            }
         }
-    }
 
+        // Print the total value of the hand, adjusted for hidden card
+        System.out.print("(value = " + handValue + ")");
+    } 
     public boolean wantsHit(Scanner sc, Player o){
         if(o.getHandValue() < 17 && super.getHandValue() <= o.getHandValue()){
             return true; 
